@@ -78,7 +78,9 @@ a{
 
 }
 
-.table-of-contents{
+.table-of-contents,
+.contact-container,
+.about-container{
 	min-height: 100vh;
 	display: flex;
 	align-items: center;
@@ -88,11 +90,107 @@ a{
 	width: 100%;
 }
 
-.parallax-block{
-  background-image: url("../images/gym-arms-crossed.png");
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 300px;
-  background-position: center;
+.parallax-block-1{
+	background-image: url("../images/gym-arms-crossed.png");
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 300px;
+	background-position: center;
+}
+
+.rounded-profile{
+	width: 150px;
+	border-radius: 150px;
+}
+
+.contact-line b{
+	width: 150px;
+	font-weight: bold;
+	display: inline-block;
+}
+
+.contact-header-line{
+	display: block;
+	font-size: .9em;
+}
+
+@media screen and (max-width: 440px) {
+	.contact-line b {
+		display: block;
+		margin-top: 4px;
+	}
+}
+
+.parallax-block-2{
+	background-image: url("../images/bike.jpg");
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 300px;
+	background-position: center;
+}
+
+.parallax-block-3{
+	background-image: url("../images/motorcycle-pose.png");
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 300px;
+	background-position: center;
+}
+
+.portfolio-thumb{
+	background-repeat: no-repeat;
+	width: 100%;
+	margin:0;
+	padding: 0;
+	border: 0;
+	height: 175px;
+	background-size: contain;
+	background-position: center;
+}
+
+.portfoliocard p{
+	height: 72px;
+}
+
+.portfolio-thumb.jsql{
+	background-image: url("../images/jsql-logo.png");
+}
+
+.portfolio-thumb.browser-mirror{
+	background-image: url("../images/browser-mirror.png");
+}
+
+.portfolio-thumb.mysqlimport{
+	background-image: url("../images/mysql-import.png");
+}
+
+.portfolio-thumb.canvaslayers{
+	background-image: url("../images/canvas-layers.png");
+}
+
+.portfolio-thumb.calendarjs{
+	background-image: url("../images/calendarjs.png");
+}
+
+.portfolio-thumb.ezdnd{
+	background-image: url("../images/ez-dnd.png");
+}
+
+.portfolio-thumb.virussim{
+	background-image: url("../images/virussim.png");
+}
+
+.portfolio-thumb.golife{
+	background-image: url("../images/go-life.png");
+}
+
+.portfolio-thumb.goldblum{
+	background-image: url("../images/goldblum.webp");
+}
+
+.portfolio-thumb.guitar{
+	background-image: url("../images/guitar.png");
 }

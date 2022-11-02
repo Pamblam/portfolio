@@ -33,38 +33,228 @@
 				<div class="col-lg-6 col-md-8 mx-auto w100 p-5">
 					<h3><i class="fa-solid fa-rectangle-list"></i> Contents</h3>
 					<ol>
-						<li><a href="#">Contact Info</a></li>
+						<li><a href="#" data-scrollto="contact-section">Contact Info</a></li>
 						<li>
-							<a href="#">About Me</a>
+							<a href="#" data-scrollto="about-section">About Me</a>
 							<ol>
-								<li><a href="#">Personal</a></li>
-								<li><a href="#">Professional</a></li>
+								<li><a href="#" data-scrollto='about-me-personal'>Personal</a></li>
+								<li><a href="#" data-scrollto='about-me-professional'>Professional</a></li>
 							</ol>
 						</li>
-						<li><a href="#">Work Experience</a></li>
-						<li><a href="#">Organizations</a></li>
-						<li><a href="#">Education</a></li>
-						<li><a href="#">Portfolio</a></li>
+						<li><a href="#" data-scrollto='portfolio-section'>Portfolio</a></li>
 					</ol>
 				</div>
 			</div>
 		</section>
 
-		<div class='parallax-block'></div>
+		<div class='parallax-block-1'></div>
 		
-		<section class="py-5 container" id='contact-section'>
+		<section class="py-5 container contact-container" id='contact-section'>
 			<div class="row py-lg-5">
 				<div class="col-lg-6 col-md-8 mx-auto w100 p-5">
-					<h3><i class="fa-solid fa-rectangle-list"></i> Contact Me</h3>
-					<ol>
-						<li><a href="#">888888</li>
-					</ol>
+					<img src="./images/gym-at-rack.png" class="rounded-profile">
+					<h3 class="mb-0 mt-3"><i class="fa-solid fa-address-card"></i> Robert Parham</h3>
+					<div class="contact-line mb-3"><i class="fa-solid fa-location-dot"></i> Tampa Bay, Florida</div>
+					<div class="contact-line"><b><i class="fa-solid fa-mobile"></i> Cell</b> <span id="phone-span">8888888</span></div>
+					<div class="contact-line"><b><i class="fa-solid fa-envelope"></i> Email</b> <span id="email-span">8888888</span></div>
+					
+					<i class="contact-header-line mt-2">Around the web...</i>
+					
+					<div class="contact-line"><b><i class="fa-brands fa-stack-overflow"></i> StackOverflow</b> <a href="https://stackoverflow.com/users/1444609/i-wrestled-a-bear-once">I Wrestled a Bear Once</a></div>
+					<div class="contact-line"><b><i class="fa-brands fa-github"></i> GitHub</b> <a href="https://github.com/Pamblam">Pamblam</a></div>
+					<div class="contact-line"><b><i class="fa-brands fa-instagram"></i> Instagram</b> <a href="https://www.instagram.com/robsraces/">@robsraces</a></div>
+					
+					<div class="contact-line mt-4">
+						<a href="./downloads/Robert Parham.vcf" class="btn btn-info" download><i class="fa-regular fa-address-card"></i> vCard</a>
+						<a href="./downloads/Robert's Resume.pdf" class="btn btn-info" download><i class="fa-solid fa-download"></i> Resume</a>
+					</div>
 				</div>
 			</div>
 		</section>
 		
+		<div class='parallax-block-2'></div>
+		
+		<section class="py-5 container about-container" id='about-section'>
+			<div class="row py-lg-5">
+				<div class="col-lg-6 col-md-8 mx-auto w100 p-5">
+					<h3><i class="fa-solid fa-person-rays"></i> About Me</h3>
+					
+					<p>I was born on a sunny 74&deg; afternoon in Florida at the end of the 80's. Gas was 97&cent; a gallon, we had a movie star in the White House, and the internet was just being invented.</p>
+					
+					<h4 id='about-me-personal'><i class="fa-solid fa-person-running"></i> Personal Life</h4>
+					
+					<p>I spend much of my free time running and weight lifting. In 2022, I ran 52 races (one each week) ranging from the neighborhood Turkey Trot to the New York Marathon, the largest one in the world. I've competed in triathlons, Spartan races and other race formats. I've run events through Daytona Speedway, Seaworld Orlando, and even did a nude 5k hosted by a nudist resort. One day, I'd like to do an Iron Man.</p>
+					
+					<p>When I'm not working or working out, I can be found coaching my daughter's little league baseball team, attending PTA meetings or Masonic events at my local lodge, or riding my motorcycles up the beach for tacos. I also enjoy scuba diving, when I can make time for it.</p>
+					
+					<h4 id='about-me-professional'><i class="fa-solid fa-user-tie"></i> Professional Life</h4>
+					
+					<p>I've always found pleasure in solving puzzles, so from a young age I gravitated towards learning and writing computer code. Nearly two decades ago I wrote some software to fully automate my $10/hr data-entry desk job. When my bosses found out, they promoted me to 1-man IT department, where I wrote elaborate CRM software, phone automation software, and set up and administered a physical Linux webserver we kept in the closet. Since then, I've had a number of freelance jobs building marketplace apps, fitness apps, social apps and more.</p>
+					
+					<p>Since June 2015 I've been an in-house developer for a large national marketing company where I write and maintain web and server code and a few hybrid mobile applications.</p>
+					
+				</div>
+			</div>
+		</section>
+		
+		<div class='parallax-block-3'></div>
+		
+		<section class="py-5 container" id='portfolio-section'>
+			<div class="row py-lg-5">
+				<div class="col-lg-6 col-md-8 mx-auto w100 p-5">
+					<h3><i class="fa-regular fa-images"></i> Portfolio</h3>
+					<p>A very small sample of some of my favorite personal projects. There are many, many more on my <a href='https://github.com/Pamblam'>Github</a>.</p>
+				</div>
+			</div>
+		</section>
+		
+		<section class='container'>
+			
+			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+				
+				<div class="col">
+					<div class="card shadow-sm portfoliocard">
+						<div class='portfolio-thumb jsql'></div>
+						<div class="card-body">
+							<p class="card-text">A persistent SQL engine written from scratch in Javascript.</p>
+							<div class="d-flex justify-content-between align-items-center">
+								<div class="btn-group">
+									<a href='https://github.com/Pamblam/jSQL' class="btn btn-sm btn-outline-secondary">View</a>
+								</div>
+								<small class="text-muted">Javascript, SQL</small>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col">
+					<div class="card shadow-sm portfoliocard">
+						<div class='portfolio-thumb browser-mirror'></div>
+						<div class="card-body">
+							<p class="card-text">Share state across browsers without screen sharing.</p>
+							<div class="d-flex justify-content-between align-items-center">
+								<div class="btn-group">
+									<a href='https://github.com/Pamblam/browser-mirror' class="btn btn-sm btn-outline-secondary">View</a>
+								</div>
+								<small class="text-muted">Node, BASH</small>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col">
+					<div class="card shadow-sm portfoliocard">
+						<div class='portfolio-thumb mysqlimport'></div>
+						<div class="card-body">
+							<p class="card-text">Import MySQL dumps with Node.</p>
+							<div class="d-flex justify-content-between align-items-center">
+								<div class="btn-group">
+									<a href='https://github.com/Pamblam/mysql-import' class="btn btn-sm btn-outline-secondary">View</a>
+								</div>
+								<small class="text-muted">Node, MySQL</small>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col">
+					<div class="card shadow-sm portfoliocard">
+						<div class='portfolio-thumb canvaslayers'></div>
+						<div class="card-body">
+							<p class="card-text">WYSIWYG HTML5 canvas layering library.</p>
+							<div class="d-flex justify-content-between align-items-center">
+								<div class="btn-group">
+									<a href='https://github.com/Pamblam/canvas-layers' class="btn btn-sm btn-outline-secondary">View</a>
+								</div>
+								<small class="text-muted">HTML5, Javascript</small>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col">
+					<div class="card shadow-sm portfoliocard">
+						<div class='portfolio-thumb calendarjs'></div>
+						<div class="card-body">
+							<p class="card-text">Simple, responsive, programmable calendar widget.</p>
+							<div class="d-flex justify-content-between align-items-center">
+								<div class="btn-group">
+									<a href='https://github.com/Pamblam/CalendarJS' class="btn btn-sm btn-outline-secondary">View</a>
+								</div>
+								<small class="text-muted">Javascript</small>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col">
+					<div class="card shadow-sm portfoliocard">
+						<div class='portfolio-thumb ezdnd'></div>
+						<div class="card-body">
+							<p class="card-text">Library to allow users to drag and drop components.</p>
+							<div class="d-flex justify-content-between align-items-center">
+								<div class="btn-group">
+									<a href='https://github.com/Pamblam/ez-drag-n-drop' class="btn btn-sm btn-outline-secondary">View</a>
+								</div>
+								<small class="text-muted">Javascript</small>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col">
+					<div class="card shadow-sm portfoliocard">
+						<div class='portfolio-thumb golife'></div>
+						<div class="card-body">
+							<p class="card-text">Conway's Game of life, in the browser.</p>
+							<div class="d-flex justify-content-between align-items-center">
+								<div class="btn-group">
+									<a href='https://coronavirus-simulator.com/' class="btn btn-sm btn-outline-secondary">View</a>
+								</div>
+								<small class="text-muted">Javascript, HTML5</small>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col">
+					<div class="card shadow-sm portfoliocard">
+						<div class='portfolio-thumb goldblum'></div>
+						<div class="card-body">
+							<p class="card-text">The official Jeff Goldblum Firefox plugin.</p>
+							<div class="d-flex justify-content-between align-items-center">
+								<div class="btn-group">
+									<a href='https://github.com/Pamblam/Official-Jeff-Goldblum-Firefox-Plugin' class="btn btn-sm btn-outline-secondary">View</a>
+								</div>
+								<small class="text-muted">Javascript, HTML5</small>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col">
+					<div class="card shadow-sm portfoliocard">
+						<div class='portfolio-thumb guitar'></div>
+						<div class="card-body">
+							<p class="card-text">A virtual guitar and song/tab composing utility.</p>
+							<div class="d-flex justify-content-between align-items-center">
+								<div class="btn-group">
+									<a href='https://pamblam.github.io/tab-composer/public_html/' class="btn btn-sm btn-outline-secondary">View</a>
+								</div>
+								<small class="text-muted">Javascript, HTML5</small>
+							</div>
+						</div>
+					</div>
+				</div>
+			
+		</section>
+		
+		<br><br>
+		
+		<center><small>&copy; Robert Parham 2023</small></center>
+		
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-		<script src="https://cdn.jsdelivr.net/npm/simple-parallax-js@5.5.1/dist/simpleParallax.min.js"></script>
+		
 		
 		<script src="./js/main.js"></script>
 	</body>
