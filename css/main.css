@@ -1,0 +1,98 @@
+/* color scheme: https://coolors.co/ba1200-031927-9dd1f1-508aa8-c8e0f4 */
+
+.body, html{
+	font-family: 'Raleway', serif;
+	color: #031927;
+}
+
+.bg-video-container {
+	margin: 0;
+	padding: 0;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+}
+
+.bg-video-container video {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: left;
+	z-index: 0;
+}
+
+.bg-video-container .bg-video-caption {
+	z-index: 1;
+	color: #031927;
+	padding: 10px;
+	position: absolute;
+	top: 50%;
+	margin: 0 auto;
+	text-align: center;
+	width: 100vw;
+	animation: float 6s ease-in-out infinite;
+}
+
+.bg-video-caption h2{
+	font-size: 42px;
+	font-weight: bold;
+}
+
+.bg-video-caption button, .bg-video-caption button:active{
+	background: #9DD1F1;
+	border-color: #9DD1F1;
+	color: #031927;
+}
+
+.bg-video-caption button:hover{
+	background: #C8E0F4;
+	border-color: #C8E0F4;
+}
+
+@keyframes float {
+	0% {
+		transform: translatey(-45%);
+	}
+	50% {
+		transform: translatey(-55%);
+	}
+	100% {
+		transform: translatey(-45%);
+	}
+}
+
+ol {
+    list-style-type: decimal;
+}
+
+ol > li > ol {
+    list-style-type: lower-alpha;
+}
+
+ol > li > ol > li > ol {
+    list-style-type: upper-roman;
+}
+
+a{
+	text-decoration: none;
+
+}
+
+.table-of-contents{
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+}
+
+.w100{
+	width: 100%;
+}
+
+.parallax-block{
+  background-image: url("../images/gym-arms-crossed.png");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 300px;
+  background-position: center;
+}
