@@ -7,9 +7,9 @@ EMAIL;type=INTERNET;type=HOME;type=pref:adelphia@protonmail.ch
 EMAIL;type=INTERNET;type=HOME:adelphia@protonmail.ch
 TEL;type=CELL;type=VOICE;type=pref:813-616-0819
 TEL;type=CELL;type=VOICE:813-616-0819
-item1.URL;type=pref:http://pamblam.com
+item1.URL;type=pref:http://robert-parham.com
 item1.X-ABLabel:_$!<HomePage>!$_
-item2.URL:http://pamblam.com
+item2.URL:http://robert-parham.com
 item2.X-ABLabel:_$!<HomePage>!$_
 BDAY:1989-01-17
 PHOTO;ENCODING=b;TYPE=JPEG:/9j/4AAQSkZJRgABAQAASABIAAD/4QBARXhpZgAATU0AKgAA
