@@ -14,8 +14,9 @@
         </style>
     </head>
     <body>
+
         <div style="max-width:816px; margin:0 auto">
-			<h1 style="text-align:center; color: #3f3f3f; font-family: Arial; font-size: 20pt; text-decoration: none !important; font-weight: bold;">ROBERT PARHAM</h1>
+			<h1 class='name' style="text-align:center; color: #3f3f3f; font-family: Arial; font-size: 20pt; text-decoration: none !important; font-weight: bold;">ROBERT PARHAM</h1>
 		</div>
 
 		<div style="color: #1f4f69; font-family: Arial; font-size: 12pt; font-weight: bold; text-align:center;"><a style="color:inherit; text-decoration:none;" href='mailto:adelphia@protonmail.ch'>adelphia@protonmail.ch</a>  |  Tampa Bay, FL  |  <a style="color:inherit; text-decoration:none;" href='tel:8136160819'>(813) 616-0819</a></div>
@@ -128,88 +129,119 @@
 		</ul>
 
 		<script>
-		
-			function spannify(ele){
-			let html = '';
-			if(ele.hasChildNodes()){
-				
-				let clone = ele.cloneNode(false);
-				let htmlBuffer = [];
-				
-				for(let i=0; i<ele.childNodes.length; i++){
-				
-				let node = ele.childNodes[i];
-				if(node.nodeType === Node.TEXT_NODE){
-					let chars = node.textContent.split('');
-					let spans = chars.map(c=>`<span class='c'>${c}</span>`);
-					htmlBuffer.push(...spans);
-				}else{
-					let children = spannify(node);
-					htmlBuffer.push(children);
-				}
-				}
-				clone.innerHTML = htmlBuffer.join('');
-				html += clone.outerHTML;
-			}else{
-				html += ele.outerHTML;
-			}
-			return html;
-			}
 
+			// Wrap every char in a <span> tag
 			let html = spannify(document.body);
 			document.body.innerHTML = html;
 
+			let cb_span = document.createElement('label');
+			cb_span.innerHTML = `<input type='checkbox' id='switch'> Turn off animations.`;
+			cb_span.style.position = 'fixed';
+			cb_span.style.top = '0';
+			cb_span.style.right = '15px';
+			cb_span.style.backgroundColor = `rgba(255, 255, 255, 0.5)`;
+			document.body.appendChild(cb_span);
+			let cb = document.getElementById('switch');
+
+			// Add a mouseover listener for every individual char
 			document.querySelectorAll('.c').forEach(letter=>{
-			letter.addEventListener('mouseover', async function(){
-				if(letter.dataset.rotating == 1) return;
-				letter.dataset.rotating = 1;
-				
+				if(!letter.innerText.trim()) return;
+				letter.style.display = 'inline-block';
 				let color = getComputedStyle(letter).getPropertyValue("color").match(/(\d+)/g).map(n=>+n);
-
 				let colors = [
-				[245, 129, 66],
-				[245, 245, 66],
-				[135, 245, 66],
-				[66, 245, 150],
-				[66, 236, 245],
-				[66, 132, 245],
-				[132, 66, 245],
-				[242, 66, 245],
-				[245, 66, 105]
+					[140, 0, 0],
+					[140, 126, 0],
+					[0, 140, 2],
+					[0, 40, 140]
 				];
-				
-				for(let i=0; i<=colors.length; i++){
-				let prevColor = i === 0 ? color : colors[i-1];
-				let nextColor = i === colors.length ? color : colors[i];
-				await animateColorChange(letter, 100, prevColor, nextColor);
+				if(letter.parentElement.classList.contains('name')){
+					let idx = [...letter.parentElement.children].indexOf(letter);
+					(function a(){
+						setTimeout(async ()=>{
+							if(!cb.checked){
+								let p = animate({element:letter, start_value:0, style_property:'transform', end_value:360, unit:p => `rotate(${p}deg)`, duration:100*(colors.length+2), algo:'easeOutBounce'});
+								for(let i=0; i<=colors.length; i++){
+									let prevColor = i === 0 ? color : colors[i-1];
+									let nextColor = i === colors.length ? color : colors[i];
+									await animateColorChange(letter, 100, prevColor, nextColor);
+								}
+								await p;
+							}
+							setTimeout(a, 5000);
+						}, 2000+(idx*100));
+					})();
+				}else{
+					letter.addEventListener('mouseover', async function(){
+						if(letter.dataset.rotating == 1 || cb.checked) return;
+						letter.dataset.rotating = 1;
+						animate({element:letter, start_value:0, style_property:'transform', end_value:360, unit:p => `rotate(${p}deg)`, duration:100*(colors.length+2), algo:'easeOutBounce'});
+						for(let i=0; i<=colors.length; i++){
+							let prevColor = i === 0 ? color : colors[i-1];
+							let nextColor = i === colors.length ? color : colors[i];
+							await animateColorChange(letter, 100, prevColor, nextColor);
+						}
+						letter.dataset.rotating = 0;
+					});
 				}
-				
-				letter.dataset.rotating = 0;
-			});
 			});
 
-
+			/**
+			 * Function to smoothly transition the color of an element
+			 */
 			async function animateColorChange(element, duration, start_color_rgb, end_color_rgb){
-			let dif = (a, b, p) => {
-				if(a > b) p = 1 - p;
-				let difference = Math.abs(b - a);
-				let movement = difference * p;
-				return Math.round(Math.min(a, b) + movement);
-			};
-			await animate({
-				element, duration,
-				start_value: 0, 
-				style_property: 'color', 
-				end_value: 1, 
-				unit: pct => {
-				let r = dif(start_color_rgb[0], end_color_rgb[0], pct);
-				let g = dif(start_color_rgb[1], end_color_rgb[1], pct);
-				let b = dif(start_color_rgb[2], end_color_rgb[2], pct);
-				return `rgb(${r}, ${g}, ${b})`;
-				}
-			});
+				let dif = (a, b, p) => {
+					if(a > b) p = 1 - p;
+					let difference = Math.abs(b - a);
+					let movement = difference * p;
+					return Math.round(Math.min(a, b) + movement);
+				};
+				await animate({
+					element, duration,
+					start_value: 0, 
+					style_property: 'color', 
+					end_value: 1, 
+					unit: pct => {
+						let r = dif(start_color_rgb[0], end_color_rgb[0], pct);
+						let g = dif(start_color_rgb[1], end_color_rgb[1], pct);
+						let b = dif(start_color_rgb[2], end_color_rgb[2], pct);
+						return `rgb(${r}, ${g}, ${b})`;
+					}
+				});
 			}
 
+			/**
+			 * Function to wrap each individual displayed char in a <span> element.
+			 */
+			 function spannify(ele){
+				let html = '';
+				if(ele.hasChildNodes()){
+					
+					let clone = ele.cloneNode(false);
+					let htmlBuffer = [];
+					
+					for(let i=0; i<ele.childNodes.length; i++){
+					
+						let node = ele.childNodes[i];
+						if(node.nodeType === Node.TEXT_NODE){
+							let chars = node.textContent.split('');
+							let spans = chars.map(c=>`<span class='c'>${c}</span>`);
+							htmlBuffer.push(...spans);
+						}else{
+							let children = spannify(node);
+							htmlBuffer.push(children);
+						}
+					}
+					clone.innerHTML = htmlBuffer.join('');
+					html += clone.outerHTML;
+				}else{
+					html += ele.outerHTML;
+				}
+				return html;
+			}
+
+			/**
+			 * Animate a CSS property. See pamblam.github.io/animate.js/
+			 */
 			function animate({ element, style_property, start_value = null, end_value, unit = '', duration = 250, algo = 'linear' }) {
 				return new Promise((resolve) => {
 
