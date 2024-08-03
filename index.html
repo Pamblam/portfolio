@@ -134,6 +134,7 @@
 			let html = spannify(document.body);
 			document.body.innerHTML = html;
 
+			// Create a switch to turn off animations.
 			let cb_span = document.createElement('label');
 			cb_span.innerHTML = `<input type='checkbox' id='switch'> Turn off animations.`;
 			cb_span.style.position = 'fixed';
@@ -218,14 +219,35 @@
 					
 					let clone = ele.cloneNode(false);
 					let htmlBuffer = [];
-					
+
 					for(let i=0; i<ele.childNodes.length; i++){
-					
 						let node = ele.childNodes[i];
 						if(node.nodeType === Node.TEXT_NODE){
 							let chars = node.textContent.split('');
-							let spans = chars.map(c=>`<span class='c'>${c}</span>`);
-							htmlBuffer.push(...spans);
+
+							let words = [];
+							let current_word = [];
+							for(let n=0; n<chars.length; n++){
+								let char = chars[n];
+								if(!char.trim()){
+									if(current_word.length){
+										words.push(`<span style='white-space:nowrap;'>${current_word.join('')}</span>`);
+										current_word = [];
+									}
+									words.push(char);
+								}else{
+									current_word.push(`<span class='c'>${char}</span>`);
+								}
+							}
+
+							if(current_word.length){
+								words.push(`<span style='white-space:nowrap;'>${current_word.join('')}</span>`);
+							}
+
+							htmlBuffer.push(...words);
+
+							//let spans = chars.map(c=>`<span class='c'>${c}</span>`);
+							//htmlBuffer.push(...spans);
 						}else{
 							let children = spannify(node);
 							htmlBuffer.push(children);
