@@ -162,33 +162,27 @@
 			document.body.appendChild(cb_span);
 			let cb = document.getElementById('switch');
 
+			// Rainbow colors RGB
+			let colors = [
+				[140, 0, 0],
+				[140, 126, 0],
+				[0, 140, 2],
+				[0, 40, 140]
+			];
+
+			// Macro to get the color of an element in the above format
+			let get_color = e => getComputedStyle(e).getPropertyValue("color").match(/(\d+)/g).map(n=>+n);
+
+			// Collection of letters in the header
+			let header_chars = [];
+
 			// Add a mouseover listener for every individual char
 			document.querySelectorAll('.c').forEach(letter=>{
 				if(!letter.innerText.trim()) return;
 				letter.style.display = 'inline-block';
-				let color = getComputedStyle(letter).getPropertyValue("color").match(/(\d+)/g).map(n=>+n);
-				let colors = [
-					[140, 0, 0],
-					[140, 126, 0],
-					[0, 140, 2],
-					[0, 40, 140]
-				];
+				let color = get_color(letter);
 				if(letter.parentElement.parentElement.classList.contains('name')){
-					let idx = [...letter.parentElement.children].indexOf(letter);
-					(function a(){
-						setTimeout(async ()=>{
-							if(!cb.checked){
-								let p = animate({element:letter, start_value:0, style_property:'transform', end_value:360, unit:p => `rotate(${p}deg)`, duration:100*(colors.length+2), algo:'easeOutBounce'});
-								for(let i=0; i<=colors.length; i++){
-									let prevColor = i === 0 ? color : colors[i-1];
-									let nextColor = i === colors.length ? color : colors[i];
-									await animateColorChange(letter, 100, prevColor, nextColor);
-								}
-								await p;
-							}
-							setTimeout(a, 5000);
-						}, 2000+(idx*100));
-					})();
+					header_chars.push(letter);
 				}else{
 					letter.addEventListener('mouseover', async function(){
 						if(letter.dataset.rotating == 1 || cb.checked) return;
@@ -203,6 +197,31 @@
 					});
 				}
 			});
+
+			// Rotate the header chars
+			(function rotateHeaders(){
+				let promises = header_chars.map((letter, index)=>new Promise(d=>{
+					setTimeout(async ()=>{
+						let duration = 100*(colors.length+2);
+						if(cb.checked){
+							setTimeout(d, duration);
+						}else{
+							let color = get_color(letter);
+							let p = animate({element:letter, start_value:0, style_property:'transform', end_value:360, unit:p => `rotate(${p}deg)`, duration, algo:'easeOutBounce'});
+							for(let i=0; i<=colors.length; i++){
+								let prevColor = i === 0 ? color : colors[i-1];
+								let nextColor = i === colors.length ? color : colors[i];
+								await animateColorChange(letter, 100, prevColor, nextColor);
+							}
+							await p;
+							d();
+						}
+					}, 100*index);
+				}));
+				Promise.all(promises).then(_=>{
+					setTimeout(rotateHeaders, 3000);
+				});
+			})();
 
 			/**
 			 * Function to smoothly transition the color of an element
